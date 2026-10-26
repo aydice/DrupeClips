@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DrupeClips – get paid for clips in Africa</title>
+<link rel="icon" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F6F2;--surface:#fff;--ink:#16201A;--mute:#5B665F;--line:#DDE2D9;--green:#0B6B3A;--on-green:#fff;--gold:#F2B705;--red:#C8302B;--ok:#0B6B3A;--warn:#9A6B00}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1511;--surface:#18211B;--ink:#EEF2EC;--mute:#9AA89F;--line:#2A362E;--green:#3DBE77;--on-green:#08140D;--ok:#3DBE77;--warn:#F2B705}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 'DM Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque','DM Sans',sans-serif;margin:0}
+.strip{height:4px;background:repeating-linear-gradient(90deg,var(--gold) 0 18px,var(--green) 18px 36px,var(--red) 36px 48px,#111 48px 60px)}
+header{display:flex;align-items:center;gap:10px;padding:12px 16px 4px;max-width:640px;margin:0 auto;font:800 24px 'Bricolage Grotesque',sans-serif}
+header img{width:38px;height:38px;border-radius:10px}
+main{max-width:640px;margin:0 auto;padding:8px 16px 110px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.meta,.brand{color:var(--mute);font-size:14px}.note{color:var(--mute);font-size:13px;margin-top:10px}
+.rate{font:800 22px 'Bricolage Grotesque';color:var(--green);text-align:right;white-space:nowrap}.rate small{font:500 12px 'DM Sans';color:var(--mute)}
+.chips{display:flex;gap:6px;margin:0 0 12px}
+.chip{flex:none;white-space:nowrap;font:500 13px 'DM Sans';border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--mute);background:none;cursor:pointer}
+.chip.on{color:var(--green);border-color:var(--green);font-weight:700}
+.bar{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin:10px 0 4px}.bar i{display:block;height:100%;background:var(--gold)}
+.btn{border:0;background:var(--green);color:var(--on-green);font:700 15px 'DM Sans';padding:11px 18px;border-radius:10px;cursor:pointer;min-height:44px}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}.btn.red{background:none;color:var(--red);border:1px solid var(--red)}
+.btns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:14px}
+.seg button{flex:1;border:0;background:none;color:var(--mute);font:700 14px 'DM Sans';padding:9px;border-radius:999px;cursor:pointer}.seg button.on{background:var(--green);color:var(--on-green)}
+.st{font-weight:700;font-size:13px}.st.pending,.st.draft{color:var(--warn)}.st.approved,.st.live{color:var(--ok)}.st.rejected{color:var(--red)}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 4px}
+input,textarea,select{width:100%;font:16px 'DM Sans';padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.bal{font:800 40px 'Bricolage Grotesque'}
+.item{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:20px 0 8px}
+.in{color:var(--ok);font-weight:700}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav div{display:flex;max-width:640px;margin:0 auto}
+nav button{flex:1;border:0;background:none;color:var(--mute);font:700 12px 'DM Sans';padding:9px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;border-top:3px solid transparent}
+nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--green);border-top-color:var(--gold)}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-end;justify-content:center;z-index:20}#modal.open{display:flex}
+.sheet{background:var(--surface);width:100%;max-width:640px;border-radius:18px 18px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px));max-height:90vh;overflow:auto}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30;max-width:90%}#toast.on{opacity:1}
+.empty{text-align:center;color:var(--mute);padding:28px 10px}
+</style>
+</head>
+<body>
+<div class="strip"></div>
+<header><img src="logo.png" alt="">DrupeClips</header>
+<main id="main"><div class="empty">Loading…</div></main>
+<nav id="navw" style="display:none"><div id="nav"></div></nav>
+<div id="modal"><div class="sheet" id="sheet"></div></div>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+// ===== STEP: paste your two Supabase values here (Project Settings > API) =====
+const SUPABASE_URL='https://jkkclsivxltlaqbcgzak.supabase.co';
+const SUPABASE_KEY='sb_publishable_RhIjvsCowYB1TwDGsSUgkA_9mhW6u2z';
+const FUND_NUMBER='not-used'; // where brands send campaign money during the pilot
+// ============================================================================
+if(SUPABASE_URL.startsWith('PASTE')||typeof supabase==='undefined'){document.getElementById('main').innerHTML='<div class="card"><h3>Almost there</h3><p class="meta">This page needs your Supabase URL and key before it can run. Add them near the top of index.html, then put the site online.</p></div>';throw new Error('Setup needed: add your Supabase URL and key')}
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const CATS=['All','Music','Food','Fashion','Tech','Other'],MOMO=['MTN MoMo','Telecel Cash','AirtelTigo Money'];
+const ic=p=>`<svg viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
+const IC={home:ic('<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/>'),clips:ic('<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z"/>'),msgs:ic('<path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20l1.2-4.4A8 8 0 1 1 21 11.5z"/>'),bal:ic('<path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3"/><rect x="3" y="7.5" width="18" height="12.5" rx="3"/><circle cx="16.5" cy="13.7" r="1.2"/>'),me:ic('<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/>')};
+const S={tab:'home',cat:'All',mode:'in',camps:[]};let U=null,P={};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fm=(n,c='GHS')=>new Intl.NumberFormat('en-GH',{style:'currency',currency:c}).format(n||0);
+const val=id=>$('#'+id).value.trim();
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),3000)}
+const modal=h=>{$('#sheet').innerHTML=h;$('#modal').classList.add('open')},closeM=()=>$('#modal').classList.remove('open');
+const load=()=>{$('#main').innerHTML='<div class="empty">Loading…</div>'};
+sb.auth.getSession().then(({data})=>{U=data.session?.user||null;boot()});
+sb.auth.onAuthStateChange((_e,s)=>{const n=s?.user||null;if(n?.id!==U?.id){U=n;boot()}});
+async function boot(){closeM();if(!U){$('#navw').style.display='none';return authView()}
+ $('#navw').style.display='';load();P=(await sb.from('profiles').select('*').eq('id',U.id).maybeSingle()).data||{};
+ if(!P.name&&U.user_metadata?.name){await sb.from('profiles').update({name:U.user_metadata.name}).eq('id',U.id);P.name=U.user_metadata.name}view()}
+function authView(){const up=S.mode==='up';$('#main').innerHTML=`<div class="card"><h2>${up?'Create your account':'Welcome back'}</h2><div class="seg" style="margin-top:12px"><button class="${up?'':'on'}" data-a="mode" data-id="in">Sign in</button><button class="${up?'on':''}" data-a="mode" data-id="up">Sign up</button></div>
+${up?'<label>Your name</label><input id="nm" autocomplete="name">':''}<label>Email</label><input id="em" type="email" autocomplete="email"><label>Password</label><input id="pw" type="password" autocomplete="${up?'new-password':'current-password'}" placeholder="At least 6 characters"><div class="btns"><button class="btn" data-a="auth">${up?'Create account':'Sign in'}</button></div></div>`}
+function card(c){const l=c.funded-c.spent;return `<div class="card"><div class="row"><div><div class="brand">${esc(c.brand_name||'Brand')} · ${esc(c.category)}</div><h3>${esc(c.title)}</h3></div><div class="rate">${fm(c.rate_per_1k,c.currency)}<br><small>per 1,000 views</small></div></div><div class="bar"><i style="width:${c.funded?Math.round(c.spent/c.funded*100):0}%"></i></div><div class="meta">${l>0?fm(l,c.currency)+' left':'Budget used up'}</div><div class="btns"><button class="btn" data-a="open" data-id="${c.id}">${c.owner_id===U.id?'Your campaign':'View and submit'}</button></div></div>`}
+async function view(){const t=S.tab;load();let h='';
+if(t==='home'){const{data}=await sb.from('campaigns').select('*').eq('status','live').order('created_at',{ascending:false});S.camps=data||[];const l=S.camps.filter(c=>S.cat==='All'||c.category===S.cat);
+ h=`<div class="chips" style="overflow-x:auto">${CATS.map(c=>`<button class="chip ${S.cat===c?'on':''}" data-a="cat" data-id="${c}">${c}</button>`).join('')}</div>`+(l.length?l.map(card).join(''):'<div class="empty">No live campaigns yet. Check back soon.</div>')}
+if(t==='clips'){const{data}=await sb.from('submissions').select('*,campaigns(title,brand_name,currency)').eq('creator_id',U.id).order('created_at',{ascending:false});
+ h=`<h2 style="margin:6px 0 14px">My clips</h2>`+((data||[]).length?data.map(s=>`<div class="card"><div class="row"><div><div class="brand">${esc(s.campaigns?.brand_name||'')}</div><b>${esc(s.campaigns?.title||'Campaign')}</b><div class="meta">${Number(s.claimed_views).toLocaleString()} views claimed${s.verified_views?' · '+Number(s.verified_views).toLocaleString()+' verified':''}</div></div><div class="st ${s.status}">${s.status==='approved'?'Paid '+fm(s.payout_amount,s.campaigns?.currency):s.status==='pending'?'In review':s.status==='flagged'?'Under check':'Rejected'}</div></div><div class="meta" style="word-break:break-all;margin-top:6px">${esc(s.url)}</div></div>`).join(''):'<div class="empty">No clips yet. Open Home and submit your first one.</div>')}
+if(t==='msgs'){const{data}=await sb.from('notifications').select('*').eq('user_id',U.id).order('created_at',{ascending:false}).limit(50);
+ h=`<h2 style="margin:6px 0 14px">Notifications</h2>`+((data||[]).length?data.map(n=>`<div class="card"><div>${esc(n.body)}</div><div class="meta">${new Date(n.created_at).toLocaleString('en-GH')}</div></div>`).join(''):'<div class="empty">Nothing yet. Updates about your clips and campaigns show up here.</div>');
+ sb.from('notifications').update({read:true}).eq('user_id',U.id).eq('read',false)}
+if(t==='bal'){const[b,l,m]=await Promise.all([sb.from('balances').select('*'),sb.from('ledger_entries').select('*').eq('user_id',U.id).order('created_at',{ascending:false}).limit(50),sb.from('payout_methods').select('*').eq('user_id',U.id)]);
+ const bal=(b.data||[])[0],cur=bal?.currency||'GHS';
+ h=`<h2 style="margin:6px 0 14px">Balance</h2><div class="card"><div class="meta">Available</div><div class="bal">${fm(bal?.balance,cur)}</div><div class="note">Withdrawals are handled by us during the pilot. Add a payout method below and message us to cash out. DrupeClips keeps 10% of each approved payout.</div></div>
+<div class="sec"><h3>Payout methods</h3><button class="btn ghost" data-a="addm">Add</button></div><div class="card">${(m.data||[]).length?m.data.map(x=>`<div class="item"><div><b>${esc(x.provider)}</b><div class="meta">••• ${esc(x.last4)} · ${esc(x.account_name)}</div></div><button class="chip" data-a="rmm" data-id="${x.id}">Remove</button></div>`).join(''):'<div class="meta">No payout method yet. Add MoMo or a bank account.</div>'}</div>
+<div class="sec"><h3>Transactions</h3></div><div class="card">${(l.data||[]).length?l.data.map(x=>`<div class="item"><div>${{earning:'Clip earnings',fund:'Campaign funding',deposit:'Deposit',payout:'Withdrawal',fee:'Fee',clawback:'Reversal'}[x.kind]||x.kind}<div class="meta">${new Date(x.created_at).toLocaleDateString('en-GH')}</div></div><div class="${x.amount>0?'in':''}">${x.amount>0?'+':''}${fm(x.amount,x.currency)}</div></div>`).join(''):'<div class="meta">No transactions yet.</div>'}</div>`}
+if(t==='me'){const{data}=await sb.from('campaigns').select('*').eq('owner_id',U.id).order('created_at',{ascending:false});
+ h=`<div class="card"><h2>${esc(P.name||'Your name')}</h2><div class="meta">${esc(U.email)}${P.phone?' · '+esc(P.phone):''}${P.city?' · '+esc(P.city):''}</div><div class="btns"><button class="btn ghost" data-a="edit">Edit profile</button><button class="btn ghost" data-a="out">Sign out</button></div></div>
+<div class="sec"><h3>My campaigns</h3><button class="btn" data-a="new">New campaign</button></div>`+((data||[]).length?data.map(c=>`<div class="card"><div class="row"><div><h3>${esc(c.title)}</h3><div class="meta">${fm(c.rate_per_1k,c.currency)} per 1,000 views · budget ${fm(c.target_budget,c.currency)}</div></div><div class="st ${c.status==='live'?'live':'draft'}">${c.status==='live'?'Live':c.status==='draft'?'Not funded':c.status}</div></div><div class="btns"><button class="btn" data-a="manage" data-id="${c.id}">Manage</button></div></div>`).join(''):'<div class="card empty">Want clips for your own brand or music? Create a campaign, fund it, then approve clips from creators.</div>')}
+$('#main').innerHTML=h;
+$('#nav').innerHTML=[['home','Home'],['clips','My clips'],['msgs','Messages'],['bal','Balance'],['me','Profile']].map(([k,l])=>`<button class="${t===k?'on':''}" data-a="tab" data-id="${k}">${IC[k]}<span>${l}</span></button>`).join('')}
+async function manage(id){const[{data:c},{data:subs}]=await Promise.all([sb.from('campaigns').select('*').eq('id',id).single(),sb.from('submissions').select('*').eq('campaign_id',id).order('created_at',{ascending:false})]);S.cur=id;
+ const pend=(subs||[]).filter(s=>s.status==='pending'||s.status==='flagged');
+ modal(`<h2>${esc(c.title)}</h2><div class="meta">${c.status==='live'?'Live':'Not live yet'} · Funded ${fm(c.funded,c.currency)} · Spent ${fm(c.spent,c.currency)}</div>
+<div class="card" style="margin-top:12px"><b>${c.status==='draft'?'Fund this campaign':'Top up budget'}</b><label>Amount (${esc(c.currency)})</label><input id="fa" type="number" inputmode="decimal" value="${c.status==='draft'?c.target_budget:100}"><div class="btns"><button class="btn" data-a="fund" data-id="${c.id}">Pay with MoMo or card</button></div><div class="note">Paid securely through Paystack. Your campaign goes live as soon as payment is confirmed.</div></div>
+<div class="sec"><h3>Clips to review</h3></div>`+(pend.length?pend.map(s=>`<div class="item" style="display:block"><div class="row"><div><b>${Number(s.claimed_views).toLocaleString()} views claimed</b><div class="meta">${s.verified_views?Number(s.verified_views).toLocaleString()+' verified':'Views still being checked'} · risk ${s.risk_score}</div></div><span class="st ${s.status}">${s.status}</span></div><div class="meta" style="word-break:break-all"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url)}</a></div><div class="btns"><button class="btn" data-a="ok" data-id="${s.id}">Approve and pay</button><button class="btn red" data-a="no" data-id="${s.id}">Reject</button></div></div>`).join(''):'<div class="meta">No clips waiting for review.</div>')+`<div class="btns"><button class="btn ghost" data-a="close">Close</button></div>`)}
+const A={
+mode(d){S.mode=d.id;authView()},
+async auth(){const email=val('em'),password=val('pw');if(!email||password.length<6)return toast('Enter your email and a password of 6+ characters');
+ if(S.mode==='up'){const{data,error}=await sb.auth.signUp({email,password,options:{data:{name:val('nm')}}});if(error)return toast(error.message);if(!data.session)toast('Check your email to confirm, then sign in')}
+ else{const{error}=await sb.auth.signInWithPassword({email,password});if(error)toast(error.message)}},
+async out(){await sb.auth.signOut()},
+tab(d){S.tab=d.id;view();scrollTo(0,0)},cat(d){S.cat=d.id;view()},close:closeM,
+open(d){const c=S.camps.find(x=>x.id===d.id);const own=c.owner_id===U.id;modal(`<h2>${esc(c.title)}</h2><div class="brand">${esc(c.brand_name||'Brand')} · ${esc(c.category)}</div><p>${esc(c.brief)}</p><div class="meta">${fm(c.rate_per_1k,c.currency)} per 1,000 views · ${fm(c.funded-c.spent,c.currency)} left</div>`+
+ (own?'<div class="note">This is your campaign. Manage it from Profile.</div>':`<label>Platform</label><select id="pl"><option value="tiktok">TikTok</option><option value="instagram">Instagram</option><option value="youtube">YouTube Shorts</option><option value="x">X</option></select><label>Link to your posted clip</label><input id="l" type="url" placeholder="https://…"><label>Views so far</label><input id="v" type="number" inputmode="numeric"><div class="note">Payment is based on views we verify, after a short checking period.</div><div class="btns"><button class="btn" data-a="send" data-id="${c.id}">Submit clip</button>`)+`<button class="btn ghost" data-a="close">Close</button></div>`)},
+async send(d){const url=val('l'),v=+val('v');if(!/^https?:\/\//.test(url)||v<1)return toast('Add your clip link and view count');
+ const{error}=await sb.from('submissions').insert({campaign_id:d.id,creator_id:U.id,platform:val('pl'),url,claimed_views:Math.floor(v)});
+ if(error)return toast(error.code==='23505'?'You already submitted this link':error.message);closeM();toast('Clip submitted');S.tab='clips';view()},
+edit(){modal(`<h2>Edit profile</h2><label>Name</label><input id="n" value="${esc(P.name)}"><label>Phone</label><input id="p" value="${esc(P.phone)}"><label>City</label><input id="c" value="${esc(P.city)}"><div class="btns"><button class="btn" data-a="saveu">Save</button><button class="btn ghost" data-a="close">Cancel</button></div>`)},
+async saveu(){const u={name:val('n'),phone:val('p'),city:val('c')};const{error}=await sb.from('profiles').update(u).eq('id',U.id);if(error)return toast(error.message);Object.assign(P,u);closeM();view();toast('Saved')},
+new(){modal(`<h2>New campaign</h2><label>Title</label><input id="t" placeholder="Clip our new single"><label>What should creators make?</label><textarea id="b" rows="3"></textarea><label>Category</label><select id="c">${CATS.slice(1).map(c=>`<option>${c}</option>`).join('')}</select><label>Rate per 1,000 views (GHS)</label><input id="r" type="number" inputmode="decimal" value="8"><label>Budget (GHS)</label><input id="g" type="number" inputmode="decimal" value="300"><div class="note">Saving creates a draft. It goes live after your payment is confirmed.</div><div class="btns"><button class="btn" data-a="create">Save campaign</button><button class="btn ghost" data-a="close">Cancel</button></div>`)},
+async create(){const t=val('t'),b=val('b'),r=+val('r'),g=+val('g');if(!t||!b||r<=0||g<=0)return toast('Fill in every field');
+ const{error}=await sb.from('campaigns').insert({owner_id:U.id,brand_name:P.name||'Brand',title:t,brief:b,category:val('c'),rate_per_1k:r,target_budget:g,currency:P.currency||'GHS'});if(error)return toast(error.message);closeM();toast('Saved. Fund it to go live.');view()},
+manage(d){manage(d.id)},
+async fund(d){const a=+val('fa');if(!(a>=5))return toast('Minimum is 5');toast('Opening Paystack…');const{data,error}=await sb.functions.invoke('paystack-init',{body:{campaign_id:d.id,amount:a}});if(error||!data?.url)return toast(data?.error||error?.message||'Could not start payment');location.href=data.url},
+async ok(d){const{error}=await sb.rpc('approve_submission',{p_sub:d.id});toast(error?error.message:'Approved and paid');manage(S.cur)},
+async no(d){const{error}=await sb.rpc('reject_submission',{p_sub:d.id});toast(error?error.message:'Clip rejected');manage(S.cur)},
+addm(){modal(`<h2>Add payout method</h2><label>MoMo or bank</label><select id="n"><optgroup label="Mobile money">${MOMO.map(x=>`<option>${x}</option>`).join('')}</optgroup><optgroup label="Bank"><option>GCB Bank</option><option>Ecobank Ghana</option><option>Stanbic Bank</option><option>Fidelity Bank</option><option>Absa Ghana</option></optgroup></select><label>Phone or account number</label><input id="d" inputmode="numeric"><label>Account name</label><input id="u" value="${esc(P.name)}"><div class="btns"><button class="btn" data-a="savem">Save</button><button class="btn ghost" data-a="close">Cancel</button></div>`)},
+async savem(){const d=val('d').replace(/\D/g,''),n=val('n');if(d.length<8||!val('u'))return toast('Enter a valid number and account name');
+ const{error}=await sb.from('payout_methods').insert({user_id:U.id,type:MOMO.includes(n)?'momo':'bank',provider:n,last4:d.slice(-4),account_name:val('u')});if(error)return toast(error.message);closeM();view();toast('Payout method added')},
+async rmm(d){await sb.from('payout_methods').delete().eq('id',d.id);view()}};
+document.addEventListener('click',e=>{if(e.target.id==='modal')return closeM();const t=e.target.closest('[data-a]');if(t)A[t.dataset.a](t.dataset)});
+</script>
+</body>
+</html>
