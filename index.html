@@ -30,6 +30,7 @@ main{max-width:640px;margin:0 auto;padding:8px 16px 120px}
 .meta,.brand{color:var(--mute);font-size:14px}.note{color:var(--mute);font-size:13px;margin-top:10px}
 .rate{font:800 22px/1.1 'Bricolage Grotesque';color:var(--green);text-align:right;white-space:nowrap}.rate small{font:500 12px 'DM Sans';color:var(--mute)}
 .chips{display:flex;gap:8px;margin:0 0 12px}
+.chips{scrollbar-width:none;-ms-overflow-style:none}.chips::-webkit-scrollbar{display:none}
 .chip{flex:none;white-space:nowrap;font:500 13px 'DM Sans';border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--mute);background:var(--surface);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .chip.on{background:var(--tint);color:var(--green);border-color:var(--green);font-weight:700}
 .bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:12px 0 6px}
@@ -84,6 +85,7 @@ main>:not(.card){grid-column:1/-1}
 main>.card{margin-bottom:0}
 main>.seg{max-width:420px}
 main>.chip{justify-self:start}
+main>.chips{flex-wrap:wrap}
 body.out main{display:block;max-width:440px;margin:40px auto}
 #modal{align-items:center}
 .sheet{max-width:560px;border-radius:24px;border-bottom:1px solid var(--line);max-height:85vh;transform:translateY(12px)}
