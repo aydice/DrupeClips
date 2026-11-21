@@ -65,6 +65,9 @@ nav button.on{color:var(--green);background:var(--tint)}
 #modal.open{opacity:1;visibility:visible}
 .sheet{background:var(--surface);width:100%;max-width:640px;border-radius:24px 24px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px));max-height:90vh;overflow:auto;transform:translateY(40px);transition:transform .4s cubic-bezier(.2,.9,.3,1)}
 #modal.open .sheet{transform:none}
+.sheet{border:1px solid var(--line);border-bottom:0}
+.sheet .card,.sheet .chip:not(.on),.sheet .seg{background:var(--bg)}
+.sheet .card{box-shadow:none}
 .sheet::before{content:"";display:block;width:40px;height:4px;border-radius:9px;background:var(--line);margin:-8px auto 14px}
 #toast{position:fixed;left:50%;bottom:104px;transform:translate(-50%,16px);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:14px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .35s cubic-bezier(.3,1.5,.5,1);z-index:30;max-width:90%;box-shadow:var(--shadow)}
 #toast.on{opacity:1;transform:translate(-50%,0)}
